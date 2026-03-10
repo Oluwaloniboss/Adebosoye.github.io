@@ -4754,6 +4754,7 @@ a:hover { color: var(--secondary) !important; border-bottom-color: transparent; 
     padding-bottom: 15px;  /* ← SPACE BETWEEN BORDER AND HEADER TEXT */
     margin-bottom: 15px;    /* ← SPACE BETWEEN HEADER AND DESCRIPTION */
 }
+
 /* Responsive */
 @media screen and (max-width: 736px) {
     #intro h1 { font-size: 2.5rem; }
@@ -4800,9 +4801,9 @@ a:hover { color: var(--secondary) !important; border-bottom-color: transparent; 
     border-radius: 5px 0 0 5px;
 }
 
-.posts article .carousel-prev,
-.posts article .carousel-next {
-    background: rgba(0,0,0,0.2); /* 20% opacity - barely there */
+.carousel-prev:hover,
+.carousel-next:hover {
+    background: rgba(0,0,0,0.8);
 }
 
 /* Hide arrows on mobile if desired */
