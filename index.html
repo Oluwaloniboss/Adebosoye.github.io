@@ -5,9 +5,84 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Data Analyst and MI Specialist portfolio" />
+    <!-- Original CSS (assumed present) -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Embedded carousel styles (fixes cropping/centering) -->
+    <style>
+        /* Minimal carousel styling – works with existing layout */
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.4s ease;
+            width: 100%;
+            align-items: center;       /* vertical centering */
+            background-color: #f0f0f0;  /* subtle background while loading */
+        }
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: contain;        /* ensures full image visible, no crop */
+            max-height: 400px;           /* reasonable limit, adjust as needed */
+            background-color: #fafafa;
+            border-radius: 4px;
+            padding: 4px;
+        }
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            padding: 12px 16px;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10;
+            text-decoration: none;
+            border: none;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .carousel-prev:hover, .carousel-next:hover {
+            background-color: rgba(0,0,0,0.9);
+        }
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
+        /* dot indicators (optional) */
+        .carousel-dots {
+            text-align: center;
+            margin-top: 8px;
+        }
+        .carousel-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            background-color: #2ecc71;
+        }
+        /* make sure article images don't overflow card */
+        .image.fit {
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body class="is-preload">
 
@@ -46,92 +121,71 @@
         <!-- Main -->
         <div id="main">
 
-           
-            <!-- Posts -->
-             <section class="posts">
-                 <article>
+            <!-- Posts (fixed structure) -->
+            <section class="posts">
+                <!-- PROJECT 1 - Patient No-Show Prediction (fully corrected) -->
+                <article>
                     <header>
                         <span class="date">Project 1</span>
                         <h2><a href="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction">Patient No-Show Prediction</a></h2>
                     </header>
-                    
-                    <!-- Clickable carousel wrapper -->
-                    <a href="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction" class="image fit" style="display: block;">
-                        <div class="carousel">
+
+                    <!-- Clickable carousel wrapper (fixed image URLs and carousel controls) -->
+                    <a href="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction" class="image fit" style="display: block; text-decoration: none; color: inherit;">
+                        <div class="carousel" id="carousel1">
                             <div class="carousel-images">
-                                <img src="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/blob/main/Images/Model%20Comparism.jpg?raw=true" alt="Model Comparism" />
-                                <img src="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/blob/main/Images/Grid.jpg?raw=true" alt="Exploratory Analysis" />
-                                <img src="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/blob/main/Images/Matrix.png?raw=true" alt="Heat Map Chart" />
-                                <img src="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/blob/main/Images/code.jpg?raw=true" alt="Python Code" />
-                                <img src="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/blob/main/Images/neighbourhood.png?raw=true" alt="Visualization" />
+                                <!-- Corrected raw GitHub image URLs -->
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Patient-No-Show-Prediction/main/Images/Model%20Comparism.jpg" alt="Model Comparison">
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Patient-No-Show-Prediction/main/Images/Grid.jpg" alt="Exploratory Analysis">
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Patient-No-Show-Prediction/main/Images/Matrix.png" alt="Heat Map Chart">
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Patient-No-Show-Prediction/main/Images/code.jpg" alt="Python Code">
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Patient-No-Show-Prediction/main/Images/neighbourhood.png" alt="Visualization">
                             </div>
-                            <a class="carousel-prev" onclick="event.preventDefault(); event.stopPropagation();">&#10094;</a>
-                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation();">&#10095;</a>
-                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation();">&#10095;</a>
-                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation();">&#10095;</a>
-                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation();">&#10095;</a>
-                            
+                            <!-- Only one prev and one next (duplicates removed) -->
+                            <a class="carousel-prev" onclick="event.preventDefault(); event.stopPropagation(); changeSlide(-1, 'carousel1')">&#10094;</a>
+                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation(); changeSlide(1, 'carousel1')">&#10095;</a>
+                            <!-- Optional dot indicators (will be added via js) -->
+                            <div class="carousel-dots" id="dots-carousel1"></div>
                         </div>
                     </a>
-                    
+
                     <p>Analyzed 110K+ medical appointments to predict patient no-shows and provide actionable insights for healthcare providers. Uncovered key drivers: wait times (30+ days → 35% no-show), age (younger patients at higher risk), and socioeconomic factors. Built and compared 5 ML models with 79.6% accuracy. Recommendations could reduce no-shows by 15%, recovering $500K+ annually.</p>
+                    
+                    <!-- Single correct button -->
                     <ul class="actions special">
                         <li><a href="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/tree/main" class="button">View Project</a></li>
                     </ul>
                 </article>
-                </p>
-                    <ul class="actions special">
-                        <li><a href="https://github.com/Oluwaloniboss/Patient-No-Show-Prediction/tree/main" class="button">View Project</a></li>
-                    </ul>
-                </article>
-                
-            <section class="posts">
+
+                <!-- PROJECT 2 - Health Providers Analysis (corrected URLs and carousel) -->
                 <article>
                     <header>
                         <span class="date">Project 2</span>
-                        <h2><a href="">Health Providers Analysis</a></h2>
+                        <h2><a href="https://github.com/Oluwaloniboss/Health-Providers-Data-Analysis">Health Providers Analysis</a></h2>
                     </header>
-                    
-                    <!-- Clickable carousel wrapper -->
-                    <a href="https://github.com/Oluwaloniboss/Health-Providers-Data-Analysis" class="image fit" style="display: block;">
-                        <div class="carousel">
+
+                    <a href="https://github.com/Oluwaloniboss/Health-Providers-Data-Analysis" class="image fit" style="display: block; text-decoration: none; color: inherit;">
+                        <div class="carousel" id="carousel2">
                             <div class="carousel-images">
-                                <img src="https://github.com/Oluwaloniboss/Oluwaloniboss.github.io/blob/main/Health%20Provider%20Dashboard.jpg?raw=true" alt="Health Dashboard" />
-                                <img src="https://github.com/Oluwaloniboss/Oluwaloniboss.github.io/blob/main/Date.jpg?raw=true" alt="Health Dashboard - Data View" />
+                                <!-- Corrected raw image URLs -->
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Oluwaloniboss.github.io/main/Health%20Provider%20Dashboard.jpg" alt="Health Dashboard">
+                                <img src="https://raw.githubusercontent.com/Oluwaloniboss/Oluwaloniboss.github.io/main/Date.jpg" alt="Health Dashboard - Data View">
                             </div>
-                            <a class="carousel-prev" onclick="event.preventDefault(); event.stopPropagation();">&#10094;</a>
-                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation();">&#10095;</a>
+                            <a class="carousel-prev" onclick="event.preventDefault(); event.stopPropagation(); changeSlide(-1, 'carousel2')">&#10094;</a>
+                            <a class="carousel-next" onclick="event.preventDefault(); event.stopPropagation(); changeSlide(1, 'carousel2')">&#10095;</a>
+                            <div class="carousel-dots" id="dots-carousel2"></div>
                         </div>
                     </a>
-                    
+
                     <p>Interactive Power BI dashboard analyzing healthcare financial performance and provider efficiency. Built using DAX measures, custom date tables, and Azure maps to visualize £3.36M in billing, top revenue drivers (X‑Ray: 31%, CT Scan: 24%), and patient out-of-pocket costs across departments and geography.</p>
                     <ul class="actions special">
-                        <li><a href="" class="button">View Project</a></li>
+                        <li><a href="https://github.com/Oluwaloniboss/Health-Providers-Data-Analysis" class="button">View Project</a></li>
                     </ul>
                 </article>
-                <!-- <article>
-                    <header>
-                        <span class="date">Project 2</span>
-                        <h2><a href="#">DemoDemo</a></h2>
-                    </header>
-                    <a href="#" class="image fit"><img src="images/placeholder.jpg" alt="" /></a>
-                    <p> demo<ul class="actions special">
-                        <li><a href="#" class="button">View Project</a></li>
-                    </ul>
-                </article>
-                <article>
-                    <header>
-                        <span class="date">Project 3</span>
-                        <h2><a href="#">demo</a></h2>
-                    </header>
-                    <a href="#" class="image fit"><img src="images/placeholder.jpg" alt="" /></a>
-                    <p>demo<ul class="actions special">
-                        <li><a href="#" class="button">View Project</a></li>
-                    </ul>
-                </article> -->
+                <!-- Removed orphaned/duplicate markup -->
             </section>
 
-            <!-- Footer -->
+            <!-- Footer (pagination) -->
             <footer>
                 <div class="pagination">
                     <a href="#" class="page active">1</a>
@@ -172,7 +226,7 @@
 
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts (original + embedded carousel JS) -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -181,5 +235,123 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
+    <!-- Carousel functionality (simple, robust, prevents cropping) -->
+    <script>
+        (function() {
+            // Store current slide index per carousel
+            const slideIndices = {};
+
+            function initCarousel(carouselId) {
+                const carousel = document.getElementById(carouselId);
+                if (!carousel) return;
+                const imagesContainer = carousel.querySelector('.carousel-images');
+                if (!imagesContainer) return;
+                const totalSlides = imagesContainer.children.length;
+                if (totalSlides === 0) return;
+
+                // Initialize index
+                slideIndices[carouselId] = 0;
+
+                // Create dots if more than 1 slide
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = ''; // clear
+                    for (let i = 0; i < totalSlides; i++) {
+                        const dot = document.createElement('span');
+                        dot.classList.add('carousel-dot');
+                        dot.dataset.index = i;
+                        dot.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const idx = parseInt(e.target.dataset.index);
+                            goToSlide(carouselId, idx);
+                        });
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+                updateCarousel(carouselId);
+            }
+
+            function goToSlide(carouselId, index) {
+                const carousel = document.getElementById(carouselId);
+                if (!carousel) return;
+                const imagesContainer = carousel.querySelector('.carousel-images');
+                if (!imagesContainer) return;
+                const totalSlides = imagesContainer.children.length;
+                if (totalSlides === 0) return;
+                // wrap around
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                slideIndices[carouselId] = index;
+                updateCarousel(carouselId);
+            }
+
+            function updateCarousel(carouselId) {
+                const carousel = document.getElementById(carouselId);
+                if (!carousel) return;
+                const imagesContainer = carousel.querySelector('.carousel-images');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                if (!imagesContainer) return;
+                const idx = slideIndices[carouselId] || 0;
+                const slideWidth = imagesContainer.children[0]?.clientWidth || 0;
+                if (slideWidth > 0) {
+                    imagesContainer.style.transform = `translateX(-${idx * slideWidth}px)`;
+                } else {
+                    // fallback if width not yet computed
+                    setTimeout(() => updateCarousel(carouselId), 50);
+                }
+                // update dots
+                if (dotsContainer) {
+                    Array.from(dotsContainer.children).forEach((dot, i) => {
+                        if (i === idx) dot.classList.add('active');
+                        else dot.classList.remove('active');
+                    });
+                }
+            }
+
+            // Expose to global for onclick handlers
+            window.changeSlide = function(direction, carouselId) {
+                const carousel = document.getElementById(carouselId);
+                if (!carousel) return;
+                const current = slideIndices[carouselId] || 0;
+                goToSlide(carouselId, current + direction);
+            };
+
+            // Initialize on load and on resize (to recalc width)
+            window.addEventListener('load', function() {
+                initCarousel('carousel1');
+                initCarousel('carousel2');
+                // small delay to ensure layout
+                setTimeout(() => {
+                    updateCarousel('carousel1');
+                    updateCarousel('carousel2');
+                }, 100);
+            });
+
+            window.addEventListener('resize', function() {
+                // recalc transforms after resize
+                setTimeout(() => {
+                    updateCarousel('carousel1');
+                    updateCarousel('carousel2');
+                }, 100);
+            });
+
+            // Also handle when images load to adjust width
+            document.querySelectorAll('.carousel-images img').forEach(img => {
+                img.addEventListener('load', function() {
+                    // find parent carousel and update
+                    const carousel = this.closest('.carousel');
+                    if (carousel) updateCarousel(carousel.id);
+                });
+            });
+        })();
+    </script>
+    <!-- Ensure carousel-dots active class gets style (if not already in main.css) -->
+    <style>
+        .carousel-dot.active {
+            background-color: #2ecc71 !important;
+            transform: scale(1.2);
+        }
+    </style>
 </body>
 </html>
